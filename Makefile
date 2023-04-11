@@ -6,7 +6,7 @@
 #    By: arincon <arincon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 16:02:04 by arincon           #+#    #+#              #
-#    Updated: 2023/04/07 17:03:36 by arincon          ###   ########.fr        #
+#    Updated: 2023/04/11 16:06:31 by arincon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,8 @@ INCS		:= include	\
 
 SRC_DIR		:= src
 SRCS		:=			\
-	pipex.c
+	pipex.c				\
+	pipex_utils.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
