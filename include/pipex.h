@@ -6,7 +6,7 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:59:07 by arincon           #+#    #+#             */
-/*   Updated: 2023/04/11 16:13:40 by arincon          ###   ########.fr       */
+/*   Updated: 2023/04/14 18:07:42 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 # include "get_next_line.h"
 # include <stdlib.h>
 # include <unistd.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 
-typedef struct s_pipe
+typedef struct s_data
 {
-	char	*file1;
-	char	*file2;
+	int		file1;
+	int		file2;
+	int		fd[2];
 	char	*cmd1;
 	char	*cmd2;
-}			t_pipe;
+}			t_data;
 
 // Utils
 void	ft_error_msn(char *str);
