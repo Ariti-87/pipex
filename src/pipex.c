@@ -6,18 +6,17 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:01:46 by arincon           #+#    #+#             */
-/*   Updated: 2023/04/14 18:40:09 by arincon          ###   ########.fr       */
+/*   Updated: 2023/04/21 19:09:07 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-int	main(int argc, char **argv/*, char **envp */)
+int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
 	pid_t	pid1;
 	pid_t	pid2;
-	/* int		i; */
 
 	if (argc != 5)
 		ft_error_msn("you need file1, cmd1, cmd2, file2 only\n");
@@ -29,6 +28,8 @@ int	main(int argc, char **argv/*, char **envp */)
 		ft_error_msn("File descriptor error, outfile\n");
 	if (pipe(data.fd) == -1)
 		ft_error_msn("An error occured with opening the pipe\n");
+	data.path = ft_pipex_path(envp);
+	data.tab_path = ft_split(data.path, ':');
 	pid1 = fork();
 	if (pid1 == -1)
 		ft_error_msn("An error occured with the first fork\n");
@@ -37,6 +38,9 @@ int	main(int argc, char **argv/*, char **envp */)
 		dup2(data.fd[1], STDOUT_FILENO);
 		close(data.fd[0]);
 		dup2(data.file1, STDIN_FILENO);
+		data.tab_cmd1 = ft_split(argv[2], ' ');
+		data.cmd1 = ft_pipex_cmd();
+		execve(data.cmd1, data.tab_cmd1, envp);
 	}
 	pid2 = fork();
 	if (pid2 == -1)
@@ -46,6 +50,9 @@ int	main(int argc, char **argv/*, char **envp */)
 		dup2(data.fd[0], STDIN_FILENO);
 		close(data.fd[1]);
 		dup2(data.file2, STDOUT_FILENO);
+		data.tab_cmd2 = ft_split(argv[2], ' ');
+		data.cmd2 = ft_pipex_cmd();
+		execve(data.cmd2, data.tab_cmd2, envp);
 	}
 
 	close(data.fd[0]);
@@ -54,18 +61,18 @@ int	main(int argc, char **argv/*, char **envp */)
 	waitpid(pid1, NULL, 0);
 	waitpid(pid2, NULL, 0);
 
-	/* i = 0;
-	while (envp[i])
-	{
-		printf("%s\n", envp[i]);
-		i++;
-	} */
 	return (0);
 }
 
-
-
 /*
+int	i;
+i = 0;
+while (envp[i])
+{
+	printf("%s\n", envp[i]);
+	i++;
+}
+
 int pipe(int pipefd[2]);
 
 int dup(int oldfd);
@@ -85,7 +92,13 @@ waitpid() suspends execution of the calling thread until a child specified by pi
 int unlink(const char *path);
 unlink() You can delete a file with unlink or remove.
 
-int execv( const char *path, char *const argv[]);
-execv() function executes a process from another process or program. This function executes the file
-or executable which is specified in the *path argument.
+int access(const char *pathname, int mode)
+access() checks whether the calling process can access the file pathname.
+If pathname is a symbolic link, it is dereferenced.
+
+int execve(const char *pathname, char *const argv[], char *const envp[]);
+execv() executes the program referred to by pathname.This causes the program that is currently being run
+by the calling process to be replaced with a new program, with newly initialized stack, heap,
+and (initialized and uninitialized) data segments.
+execl (ist) or execv (vector) and p (path) / e (environment) are options
 */
