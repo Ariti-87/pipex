@@ -6,7 +6,7 @@
 #    By: arincon <arincon@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/16 16:02:04 by arincon           #+#    #+#              #
-#    Updated: 2023/04/11 16:06:31 by arincon          ###   ########.fr        #
+#    Updated: 2023/04/24 18:51:23 by arincon          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,7 +45,8 @@ INCS		:= include	\
 SRC_DIR		:= src
 SRCS		:=			\
 	pipex.c				\
-	pipex_utils.c
+	pipex_utils.c		\
+	pipex_utils2.c
 
 SRCS		:= $(SRCS:%=$(SRC_DIR)/%)
 
@@ -54,7 +55,6 @@ OBJS		:= $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/%.o)
 DEPS		:= $(OBJS:.o=.d)
 
 CC			:= cc
-#CFLAGS		:= -g
 CFLAGS		:= -Wall -Wextra -Werror -g
 # -I lib/libft/include -L lib/libft -l libft
 CPPFLAGS	:= $(addprefix -I,$(INCS)) -MMD -MP

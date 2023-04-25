@@ -6,7 +6,7 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 17:01:46 by arincon           #+#    #+#             */
-/*   Updated: 2023/04/21 19:09:07 by arincon          ###   ########.fr       */
+/*   Updated: 2023/04/24 19:24:02 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,53 +15,30 @@
 int	main(int argc, char **argv, char **envp)
 {
 	t_data	data;
-	pid_t	pid1;
-	pid_t	pid2;
 
+	ft_pipex_init(&data, envp);
 	if (argc != 5)
-		ft_error_msn("you need file1, cmd1, cmd2, file2 only\n");
+		ft_error_msn("you need file1, cmd1, cmd2, file2 only\n", &data);
 	data.file1 = open(argv[1], O_RDWR);
-	if (data.file1 < 0)
-		ft_error_msn("File descriptor error, infile\n");
+	if (data.file1 == -1)
+		ft_error_msn("File descriptor error, infile\n", &data);
 	data.file2 = open(argv[4], O_RDWR);
-	if (data.file2 < 0)
-		ft_error_msn("File descriptor error, outfile\n");
+	if (data.file2 == -1)
+		ft_error_msn("File descriptor error, outfile\n", &data);
 	if (pipe(data.fd) == -1)
-		ft_error_msn("An error occured with opening the pipe\n");
-	data.path = ft_pipex_path(envp);
-	data.tab_path = ft_split(data.path, ':');
-	pid1 = fork();
-	if (pid1 == -1)
-		ft_error_msn("An error occured with the first fork\n");
-	if (pid1 == 0)
-	{
-		dup2(data.fd[1], STDOUT_FILENO);
-		close(data.fd[0]);
-		dup2(data.file1, STDIN_FILENO);
-		data.tab_cmd1 = ft_split(argv[2], ' ');
-		data.cmd1 = ft_pipex_cmd();
-		execve(data.cmd1, data.tab_cmd1, envp);
-	}
-	pid2 = fork();
-	if (pid2 == -1)
-		ft_error_msn("An error occured with the second fork\n");
-	if (pid2 == 0)
-	{
-		dup2(data.fd[0], STDIN_FILENO);
-		close(data.fd[1]);
-		dup2(data.file2, STDOUT_FILENO);
-		data.tab_cmd2 = ft_split(argv[2], ' ');
-		data.cmd2 = ft_pipex_cmd();
-		execve(data.cmd2, data.tab_cmd2, envp);
-	}
-
-	close(data.fd[0]);
-	close(data.fd[1]);
-
-	waitpid(pid1, NULL, 0);
-	waitpid(pid2, NULL, 0);
-
-	return (0);
+		ft_error_msn("An error occured with opening the pipe\n", &data);
+	data.pid1 = fork();
+	if (data.pid1 == -1)
+		ft_error_msn("An error occured with the first fork\n", &data);
+	if (data.pid1 == 0)
+		ft_first_child(&data, argv, envp);
+	data.pid2 = fork();
+	if (data.pid2 == -1)
+		ft_error_msn("An error occured with the second fork\n", &data);
+	if (data.pid2 == 0)
+		ft_second_child(&data, argv, envp);
+	ft_close_and_free(&data);
+	ft_waitpid(&data);
 }
 
 /*

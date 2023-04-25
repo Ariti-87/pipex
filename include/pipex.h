@@ -6,7 +6,7 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:59:07 by arincon           #+#    #+#             */
-/*   Updated: 2023/04/21 18:54:40 by arincon          ###   ########.fr       */
+/*   Updated: 2023/04/24 19:17:33 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,26 @@ typedef struct s_data
 	int		file2;
 	int		fd[2];
 	char	*path;
-	char	**tab_path;
+	char	**paths;
 	char	*cmd1;
 	char	*cmd2;
-	char	**tab_cmd1;
-	char	**tab_cmd2;
+	char	**cmds1;
+	char	**cmds2;
+	pid_t	pid1;
+	pid_t	pid2;
 }			t_data;
 
 // Utils
-void	ft_error_msn(char *str);
-char	*ft_pipex_path(char **envp);
+void	ft_error_msn(char *str, t_data *data);
+char	*ft_env_path(char **envp);
+char	*ft_find_cmd(char **paths, char *cmd);
+void	ft_free_tab(char **tab);
+void	ft_close_and_free(t_data *data);
 
-//
+// Utils2
+void	ft_pipex_init(t_data *data, char **envp);
+void	ft_first_child(t_data *data, char **argv, char **envp);
+void	ft_second_child(t_data *data, char **argv, char **envp);
+void	ft_waitpid(t_data *data);
 
 #endif
