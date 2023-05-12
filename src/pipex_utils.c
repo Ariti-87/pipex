@@ -6,7 +6,7 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:04:48 by arincon           #+#    #+#             */
-/*   Updated: 2023/04/24 19:13:58 by arincon          ###   ########.fr       */
+/*   Updated: 2023/05/04 19:11:13 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_error_msn(char *str, t_data *data)
 	exit (EXIT_FAILURE);
 }
 
+// Copy PATH string without "PATH="
 char	*ft_env_path(char **envp)
 {
 	int	i;
@@ -33,6 +34,7 @@ char	*ft_env_path(char **envp)
 	return (NULL);
 }
 
+// Look for Cmd in all paths
 char	*ft_find_cmd(char **paths, char *cmd)
 {
 	int		i;

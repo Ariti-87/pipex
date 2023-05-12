@@ -6,12 +6,13 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/24 18:50:45 by arincon           #+#    #+#             */
-/*   Updated: 2023/04/25 15:42:08 by arincon          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:04:44 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
+// Initialize and put all paths in **tab
 void	ft_pipex_init(t_data *data, char **envp)
 {
 	data->paths = 0;
@@ -25,6 +26,8 @@ void	ft_pipex_init(t_data *data, char **envp)
 	data->paths = ft_split(data->path, ':');
 }
 
+// First Cmd in first child
+// Close and dup fd
 void	ft_first_child(t_data *data, char **argv, char **envp)
 {
 	close(data->fd[0]);
@@ -40,6 +43,8 @@ void	ft_first_child(t_data *data, char **argv, char **envp)
 	execve(data->cmd1, data->cmds1, envp);
 }
 
+// second Cmd in second child
+// Close and dup fd
 void	ft_second_child(t_data *data, char **argv, char **envp)
 {
 	close(data->fd[1]);

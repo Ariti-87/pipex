@@ -6,12 +6,12 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/07 16:59:07 by arincon           #+#    #+#             */
-/*   Updated: 2023/04/24 19:17:33 by arincon          ###   ########.fr       */
+/*   Updated: 2023/04/28 15:10:46 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PIPEX_H
-#define PIPEX_H
+# define PIPEX_H
 
 # include "libft.h"
 # include "get_next_line.h"

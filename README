@@ -1,0 +1,37 @@
+/* int	i;
+i = 0;
+while (envp[i])
+{
+	printf("%s\n", envp[i]);
+	i++;
+}
+
+int pipe(int pipefd[2]);
+
+int dup(int oldfd);
+int dup2(int oldfd, int newfd);
+dup() et dup2() creates a copy of a file descriptor (oldfd)
+dup() utilise le plus petit numéro inutilisé pour le nouveau descripteur.
+dup2() transforme newfd en une copie de oldfd, fermant auparavant newfd si besoin est,
+
+fork() is used for creating a new process, which is called child process
+
+pid_t wait(int *wstatus);
+wait() suspends execution of the calling thread until one of its children terminates.
+
+pid_t waitpid(pid_t pid, int *wstatus, int options);
+waitpid() suspends execution of the calling thread until a child specified by pid argument has changed state.
+
+int unlink(const char *path);
+unlink() You can delete a file with unlink or remove.
+
+int access(const char *pathname, int mode)
+access() checks whether the calling process can access the file pathname.
+If pathname is a symbolic link, it is dereferenced.
+
+int execve(const char *pathname, char *const argv[], char *const envp[]);
+execv() executes the program referred to by pathname.This causes the program that is currently being run
+by the calling process to be replaced with a new program, with newly initialized stack, heap,
+and (initialized and uninitialized) data segments.
+execl (ist) or execv (vector) and p (path) / e (environment) are options
+ */
