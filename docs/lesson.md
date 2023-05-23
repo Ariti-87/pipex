@@ -17,7 +17,7 @@
 	<span> · </span>
     <a href="#access">Access()</a>
 	<span> · </span>
-    <a href="#dup">Dup()/Dup2()</a>
+    <a href="#dup">Dup() and Dup2()</a>
 	<span> · </span>
     <a href="#exec">Execve()</a>
 	<span> · </span>
