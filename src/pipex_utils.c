@@ -6,7 +6,7 @@
 /*   By: arincon <arincon@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/11 16:04:48 by arincon           #+#    #+#             */
-/*   Updated: 2023/05/04 19:11:13 by arincon          ###   ########.fr       */
+/*   Updated: 2023/05/23 18:13:53 by arincon          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char	*ft_env_path(char **envp)
 	return (NULL);
 }
 
-// Look for Cmd in all paths
+// Look for Cmd in all paths, return null if the cmd was not found
 char	*ft_find_cmd(char **paths, char *cmd)
 {
 	int		i;

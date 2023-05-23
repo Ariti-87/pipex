@@ -1,11 +1,3 @@
-/* int	i;
-i = 0;
-while (envp[i])
-{
-	printf("%s\n", envp[i]);
-	i++;
-}
-
 int pipe(int pipefd[2]);
 
 int dup(int oldfd);
@@ -34,4 +26,4 @@ execv() executes the program referred to by pathname.This causes the program tha
 by the calling process to be replaced with a new program, with newly initialized stack, heap,
 and (initialized and uninitialized) data segments.
 execl (ist) or execv (vector) and p (path) / e (environment) are options
- */
+
