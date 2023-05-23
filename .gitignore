@@ -1,0 +1,14 @@
+# VSC environment
+.vscode/
+
+# Executables
+*.out
+
+# Object files
+*/*.o
+
+# Libraries
+*/*/*.a
+
+# Precompiled header
+*.gch
