@@ -384,7 +384,7 @@ The unlink() function takes a pathname parameter, which is a string representing
 
 The unlink() function returns 0 on success and -1 on failure.
 
-It's important to note that the unlink() function permanently removes the file from the file system. Once a file is unlinked, it cannot be recovered, so **_caution_** should be exercised when using this function.
+It's important to note that the unlink() function permanently removes the file from the file system. Once a file is unlinked, it cannot be recovered, so _caution_ should be exercised when using this function.
 
 The unlink() function is commonly used in situations where you need to programmatically delete files in a C program, such as during file management or cleanup operations.
 
