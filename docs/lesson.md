@@ -1,5 +1,5 @@
 <h1 id="title" align="center">
-    PRINTF
+    PIPEX
 </h1>
 
 <h3 align="center">
