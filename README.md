@@ -2,7 +2,7 @@
 
 [EXTERNAL FUNCTIONS](docs/lesson.md)
 
-# PRINTF SUBJECT
+# PIPEX SUBJECT
 
 ![Image](img/en.subject_page-0001.jpg)
 ![Image](img/en.subject_page-0002.jpg)
