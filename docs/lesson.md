@@ -430,6 +430,8 @@ The strerror() function returns a pointer to a string containing the error messa
 
 The strerror() function is helpful in scenarios where you want to obtain a human-readable error message based on the error number. It allows you to provide more detailed error information to users or for diagnostic purposes.
 
+En résumé, utilisez perror() lorsque vous souhaitez afficher immédiatement un message d'erreur avec le libellé personnalisé suivi du message d'erreur correspondant à errno. Utilisez strerror() lorsque vous avez besoin de la chaîne de caractères du message d'erreur pour un traitement ou une manipulation supplémentaire, comme l'enregistrement dans un fichier journal ou une personnalisation de l'affichage de l'erreur.
+
 <br>
 <br>
 <a href="#title">Return ↑</a>
